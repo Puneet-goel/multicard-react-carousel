@@ -1,0 +1,34 @@
+.text{
+	padding: 1rem;
+	color: #6d8193;
+}
+
+.green{
+	padding: 4%;
+	font-size: 20px;
+	font-weight: 900;
+	color: floralwhite;
+	background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  
+	background: linear-gradient(to right, #38ef7d, #11998e); 
+}
+
+.blue{
+	padding: 4%;
+	font-size: 20px;
+	font-weight: 900;
+	color: floralwhite;
+	background: -webkit-linear-gradient(to right, #53b0f6, #1d11f8);  
+	background: linear-gradient(to right, #53b0f6, #1d11f8);
+}
+
+.play{
+	color:red;
+}
+
+.book{
+	color: orange;
+}
+
+.file{
+	color: red;
+}

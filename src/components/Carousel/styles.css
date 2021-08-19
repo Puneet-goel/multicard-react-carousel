@@ -1,0 +1,35 @@
+.carousel-wrapper{
+    overflow: hidden;
+}
+
+.carousel-content {
+    display: flex;
+    transition: all 500ms linear;
+}
+
+.carousel-content > * {
+    flex-shrink: 0;
+    flex-grow: 1;
+    width: calc(100% / 3);
+}
+
+.move{
+    background-color: #99a1a1 !important;
+    float:right;
+    margin-right: 3%;
+    font-size: 150% !important;
+}
+
+.live{
+    background-color: #e72727 ;
+    font-size: 150% !important;
+}
+
+.header{
+    font-weight: 900;
+    font-size: 150%;
+}
+.dot{
+    text-align: center;
+    font-size: 50% !important;
+}
