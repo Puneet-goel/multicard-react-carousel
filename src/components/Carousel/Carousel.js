@@ -6,14 +6,8 @@ import './styles.css'
 const Carousel = (props) => {
 
     const {children, multiCard} = props;
-
-    let data = [];
-    for(let i=0;i<multiCard;i++){
-        data.push(children[i]);
-    }
-
-    const [cards,setCards] = useState(data);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [cards,setCards] = useState(null);
 
     useEffect(() => {
         let data = [];
@@ -23,51 +17,51 @@ const Carousel = (props) => {
         setCards(data);
     }, [ multiCard, children, currentIndex]);
 
-    const next = () => {
-        setCurrentIndex(prevState => (prevState + 1)%(children.length/multiCard));
-
+    const change = () => {
         let data = [];
         for(let i=currentIndex*multiCard;i<currentIndex*multiCard + multiCard;i++){
             data.push(children[i]);
         }
         setCards(data);
+    }
+
+    const next = () => {
+        setCurrentIndex(prevState => (prevState + 1)%(children.length/multiCard));
+        change();
     }
 
     const prev = () => {        
-        setCurrentIndex(prevState => (prevState + 1)%(children.length/multiCard));
-
-        let data = [];
-        for(let i=currentIndex*multiCard;i<currentIndex*multiCard + multiCard;i++){
-            data.push(children[i]);
-        }
-        setCards(data);
+        setCurrentIndex(prevState => (prevState + children.length - 1)%(children.length/multiCard));
+        change();
     }
 
     return (
-        <Container className="m-5" fluid>
-            <Row>
+        <Container fluid>
+            <Row className="mx-5 mt-5">
                 <Col xs={2}>
                     <Badge className="live"> 
                         <i className="fa fa-circle dot"/>
                         &nbsp;Live 
                     </Badge> 
                 </Col>
-                <Col xs={6}>
+                <Col xs={8}>
                     <span className="header"> 
                         Upcoming Live Coaching
                     </span>
                 </Col>
                 <Col xs={2}>
-                    <Button onClick={next} className="btn btn-secondary move">
-                        <i className="fa fa-chevron-right" />
-                    </Button>
                     <Button onClick={prev} className="btn btn-secondary move">
                         <i className="fa fa-chevron-left" />
+                    </Button>
+                    <Button onClick={next} className="btn btn-secondary move">
+                        <i className="fa fa-chevron-right" />
                     </Button>
                 </Col>
             </Row>
             <div className="carousel-content">
-                {cards}
+                {
+                    cards
+                }
             </div>
         </Container>
     );

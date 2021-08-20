@@ -8,13 +8,13 @@ import './styles.css';
 const Slide = ({info}) =>{
 
     return(
-        <Col sm={6} md={3} style={{marginRight:"5%"}}>
+        <Col sm={6} md={3} style={{padding:"3%"}}>
             <motion.div whileHover={{scale: 1.1}}>
                 <Card>
                     <Card.Img variant="top" src={ image } />
                     <p className={info.color}>
                         <i className='fa fa-clock-o' /> {' '}
-                        { info.start}
+                        {info.start}
                     </p>
                     <Card.Body>
                         <Card.Title>{info.title}</Card.Title>

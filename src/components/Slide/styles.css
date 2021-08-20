@@ -21,14 +21,10 @@
 	background: linear-gradient(to right, #53b0f6, #1d11f8);
 }
 
-.play{
+.play,.file{
 	color:red;
 }
 
 .book{
 	color: orange;
-}
-
-.file{
-	color: red;
 }
