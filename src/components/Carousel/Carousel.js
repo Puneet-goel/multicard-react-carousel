@@ -3,66 +3,43 @@ import { Badge, Button, Container, Row, Col } from "react-bootstrap";
 import './styles.css'
 
 const Carousel = (props) => {
+
     const {children, multiCard} = props;
 
-    const [currentIndex, setCurrentIndex] = useState(multiCard);
-    const [length, setLength] = useState(children.length);
-    
-    const [isRepeating, setIsRepeating] = useState(children.length > multiCard);
-    const [transitionEnabled, setTransitionEnabled] = useState(true);
+    let data = [];
+    for(let i=0;i<multiCard;i++){
+        data.push(children[i]);
+    }
+
+    const [cards,setCards] = useState(data);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
-        setLength(children.length);
-        setIsRepeating(children.length > multiCard);
-    }, [children, multiCard]);
-
-    useEffect(() => {
-        if (isRepeating) {
-            if (currentIndex === multiCard || currentIndex === length) {
-                setTransitionEnabled(true);
-            }
+        let data = [];
+        for(let i=currentIndex*multiCard;i<currentIndex*multiCard + multiCard;i++){
+            data.push(children[i]);
         }
-    }, [currentIndex, isRepeating, multiCard, length]);
+        setCards(data);
+    }, [ multiCard, children, currentIndex]);
 
     const next = () => {
-        if (isRepeating || currentIndex < (length - multiCard)) {
-            setCurrentIndex(prevState => (prevState + multiCard));
+        setCurrentIndex(prevState => (prevState + 1)%(children.length/multiCard));
+
+        let data = [];
+        for(let i=currentIndex*multiCard;i<currentIndex*multiCard + multiCard;i++){
+            data.push(children[i]);
         }
+        setCards(data);
     }
 
-    const prev = () => {
-        if (isRepeating || currentIndex > 0) {
-            setCurrentIndex(prevState => (prevState - multiCard));
-        }
-    }
+    const prev = () => {        
+        setCurrentIndex(prevState => (prevState + 1)%(children.length/multiCard));
 
-    const handleTransitionEnd = () => {
-        if (isRepeating) {
-            if (currentIndex === 0) {
-                setTransitionEnabled(false);
-                setCurrentIndex(length);
-            } else if (currentIndex === length + multiCard) {
-                setTransitionEnabled(false);
-                setCurrentIndex(multiCard);
-            }
+        let data = [];
+        for(let i=currentIndex*multiCard;i<currentIndex*multiCard + multiCard;i++){
+            data.push(children[i]);
         }
-    }
-
-    const renderExtraPrev = () => {
-        let output = [];
-        for (let index = 0; index < multiCard; index++) {
-            output.push(children[length - 1 - index]);
-        }
-        output.reverse();
-        return output;
-    }
-
-    const renderExtraNext = () => {
-        let output = [];
-        for (let index = 0; index < multiCard; index++) {
-            output.push(children[index]);
-        }
-        return output;
+        setCards(data);
     }
 
     return (
@@ -91,15 +68,8 @@ const Carousel = (props) => {
             <div className="carousel-wrapper">
                 <div
                     className="carousel-content"
-                    style={{
-                        transform: `translateX(-${currentIndex * (100 / multiCard)}%)`,
-                        transition: !transitionEnabled ? 'none' : undefined,
-                    }}
-                    onTransitionEnd={() => handleTransitionEnd()}
                 >
-                    { (length > multiCard && isRepeating) && renderExtraPrev() }
-                    {children}
-                    { (length > multiCard && isRepeating) && renderExtraNext() }
+                    {cards}
                 </div>
             </div>
         </Container>

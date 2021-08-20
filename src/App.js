@@ -7,8 +7,18 @@ import Carousel from "./components/Carousel/Carousel.js";
 import Slide from "./components/Slide/Slide.js";
 
 function App() {
+	const width = window.innerWidth;
+
+	let x = 3;
+	if(width<=600){
+		x = 1;
+	}
+	else if(width<=960){
+		x = 2;
+	}
+	
     return (
-        <Carousel multiCard={3}>
+        <Carousel multiCard={x}>
 	        <Slide info={data[0]} />
 	        <Slide info={data[1]} />
 	        <Slide info={data[2]} />
