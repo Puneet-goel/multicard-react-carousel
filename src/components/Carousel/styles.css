@@ -1,10 +1,6 @@
-.carousel-wrapper{
-    overflow: hidden;
-}
-
 .carousel-content {
+    overflow: hidden;
     display: flex;
-    transition: all 500ms linear;
 }
 
 .carousel-content > * {

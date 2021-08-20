@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Badge, Button, Container, Row, Col } from "react-bootstrap";
+
 import './styles.css'
 
 const Carousel = (props) => {
@@ -65,12 +66,8 @@ const Carousel = (props) => {
                     </Button>
                 </Col>
             </Row>
-            <div className="carousel-wrapper">
-                <div
-                    className="carousel-content"
-                >
-                    {cards}
-                </div>
+            <div className="carousel-content">
+                {cards}
             </div>
         </Container>
     );
