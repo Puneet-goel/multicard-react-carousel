@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Badge, Button } from "react-bootstrap";
+import { Badge, Button, Container, Row, Col } from "react-bootstrap";
 import './styles.css'
 
 const Carousel = (props) => {
@@ -66,20 +66,28 @@ const Carousel = (props) => {
     }
 
     return (
-        <>
-            <div className="m-5">
-                <Badge className="live"> 
-                    <i className="fa fa-circle dot"/>
-                    &nbsp;Live 
-                </Badge> &nbsp;
-                <span className="header"> Upcoming Live Coaching </span>
-                <Button onClick={next} className="btn btn-secondary move">
-                    <i className="fa fa-chevron-right" />
-                </Button>
-                <Button onClick={prev} className="btn btn-secondary move">
-                    <i className="fa fa-chevron-left" />
-                </Button>
-            </div>
+        <Container className="m-5" fluid>
+            <Row>
+                <Col xs={2}>
+                    <Badge className="live"> 
+                        <i className="fa fa-circle dot"/>
+                        &nbsp;Live 
+                    </Badge> 
+                </Col>
+                <Col xs={6}>
+                    <span className="header"> 
+                        Upcoming Live Coaching
+                    </span>
+                </Col>
+                <Col xs={2}>
+                    <Button onClick={next} className="btn btn-secondary move">
+                        <i className="fa fa-chevron-right" />
+                    </Button>
+                    <Button onClick={prev} className="btn btn-secondary move">
+                        <i className="fa fa-chevron-left" />
+                    </Button>
+                </Col>
+            </Row>
             <div className="carousel-wrapper">
                 <div
                     className="carousel-content"
@@ -94,7 +102,7 @@ const Carousel = (props) => {
                     { (length > multiCard && isRepeating) && renderExtraNext() }
                 </div>
             </div>
-        </>
+        </Container>
     );
 }
 

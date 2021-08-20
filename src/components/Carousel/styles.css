@@ -22,7 +22,9 @@
 
 .live{
     background-color: #e72727 ;
-    font-size: 150% !important;
+    width: 60%;
+    height: 80%;
+    font-size: 150%;
 }
 
 .header{
